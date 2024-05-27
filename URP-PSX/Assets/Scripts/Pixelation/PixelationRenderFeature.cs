@@ -13,10 +13,19 @@ namespace PSX
             pixelationPass = new PixelationPass(RenderPassEvent.BeforeRenderingPostProcessing);
         }
 
+#if UNITY_2022_1_OR_NEWER
+        public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
+        { 
+            pixelationPass.Setup(renderer.cameraColorTargetHandle);
+        }
+#endif
+
         //ScripstableRendererFeature is an abstract class, you need this method
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
-            pixelationPass.Setup(renderer.cameraColorTarget);
+#if !UNITY_2022_1_OR_NEWER
+            ditheringPass.Setup(renderer.cameraColorTarget);
+#endif
             renderer.EnqueuePass(pixelationPass);
         }
     }
