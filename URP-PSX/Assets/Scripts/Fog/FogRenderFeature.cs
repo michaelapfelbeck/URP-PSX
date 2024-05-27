@@ -15,7 +15,7 @@ namespace PSX
 
 #if UNITY_2022_1_OR_NEWER
         public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
-        { 
+        {
             fogPass.Setup(renderer.cameraColorTargetHandle);
         }
 #endif

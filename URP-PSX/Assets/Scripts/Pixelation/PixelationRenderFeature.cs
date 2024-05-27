@@ -24,7 +24,7 @@ namespace PSX
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
 #if !UNITY_2022_1_OR_NEWER
-            ditheringPass.Setup(renderer.cameraColorTarget);
+            pixelationPass.Setup(renderer.cameraColorTarget);
 #endif
             renderer.EnqueuePass(pixelationPass);
         }
